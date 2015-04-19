@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>listmodel.py</file>
+        <file>Plan.qml</file>
+        <file>Login.qml</file>
     </qresource>
 </RCC>

@@ -4,7 +4,9 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
+    app.setOrganizationName("klcke");
+    app.setOrganizationDomain("taaem.github.io");
+    app.setApplicationName("Ohmoor Stundenplan");
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

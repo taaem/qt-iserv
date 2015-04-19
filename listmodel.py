@@ -5,13 +5,14 @@ import urllib
 import http.cookiejar
 import string
 import os
+import pyotherside
 
-def get_data():
+def get_data(u_name, u_password):
     cj = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 
     url = 'https://ohmoor.de/idesk/'
-    values = {"login_act": USERNAME, "login_pwd": PASSWORD}
+    values = {"login_act": u_name, "login_pwd": u_password}
     headers = {'Content-type': 'application/x-www-form-urlencoded'}
 
     datas = urllib.parse.urlencode(values)
@@ -60,7 +61,7 @@ def get_data():
         def handle_data(self, data):
 
             if self.gotDate == 1:
-                self.date = data
+                pyotherside.send('date_received', data)
                 pass
             if self.counter2FirstEntrys > 14 and self.parseData == 1 and data != '\n' and data != '' and data != '\r' and self.endfile == 0:
                 if self.counter == 0:
@@ -96,7 +97,7 @@ def get_data():
             if self.parseData == 1 and tag == "table":
                 self.endfile = 1
                 self.parseData = 0
-            if self.gotDate == 1 and tag == "table":
+            if self.gotDate == 1 and tag == "div":
                 self.gotDate = 0
                 pass
 
@@ -113,4 +114,4 @@ def get_data():
         parser.counter = 0
         pass
 
-    print(list)
+    return list
